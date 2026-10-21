@@ -1,4 +1,3 @@
-```java
 package com.visualpathit.account.controllerTest;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -87,4 +86,3 @@ public class UserControllerTest {
                 .andExpect(forwardedUrl("index_home"));
     }
 }
-```
