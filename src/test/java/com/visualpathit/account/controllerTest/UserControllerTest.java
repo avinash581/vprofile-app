@@ -1,7 +1,8 @@
-
+```java
 package com.visualpathit.account.controllerTest;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
@@ -15,7 +16,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.visualpathit.account.controller.UserController;
-import com.visualpathit.account.model.User;
 import com.visualpathit.account.service.UserService;
 import com.visualpathit.account.setup.StandaloneMvcTestViewResolver;
 
@@ -56,7 +56,7 @@ public class UserControllerTest {
 
     @Test
     public void loginTestHappyFlow() throws Exception {
-        mockMvc.perform(get("/login")
+        mockMvc.perform(post("/login")
                 .param("error", "Your username and password is invalid"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("login"))
@@ -87,3 +87,4 @@ public class UserControllerTest {
                 .andExpect(forwardedUrl("index_home"));
     }
 }
+```
