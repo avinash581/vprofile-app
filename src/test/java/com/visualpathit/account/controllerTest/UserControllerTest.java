@@ -15,6 +15,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.visualpathit.account.controller.UserController;
+import com.visualpathit.account.service.SecurityService;
 import com.visualpathit.account.service.UserService;
 import com.visualpathit.account.setup.StandaloneMvcTestViewResolver;
 
@@ -22,6 +23,9 @@ public class UserControllerTest {
 
     @Mock
     private UserService controllerSer;
+
+    @Mock
+    private SecurityService securityService;
 
     @InjectMocks
     private UserController controller;
@@ -36,11 +40,7 @@ public class UserControllerTest {
                 .setViewResolvers(new StandaloneMvcTestViewResolver())
                 .build();
     }
-    @RequestMapping("/")
-    public String home() {
-        return "welcome";
-    }
-    
+
     @Test
     public void registrationTestforHappyFlow() throws Exception {
         mockMvc.perform(get("/registration"))
@@ -59,8 +59,8 @@ public class UserControllerTest {
 
     @Test
     public void loginTestHappyFlow() throws Exception {
-        mockMvc.perform(post("/login")
-                .param("error", "Your username and password is invalid"))
+        mockMvc.perform(get("/login")
+                        .param("error", "Your username and password is invalid"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("login"))
                 .andExpect(forwardedUrl("login"));
