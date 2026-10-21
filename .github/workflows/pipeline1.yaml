@@ -115,7 +115,7 @@ jobs:
 
   # JOB 3: Update the separate Helm/GitOps repository
   update-helm:
-    name: Update Helm values in separate repo
+    -name: Update Helm values in separate repo
     runs-on: ubuntu-24.04
     needs: docker-build-push
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
