@@ -36,7 +36,11 @@ public class UserControllerTest {
                 .setViewResolvers(new StandaloneMvcTestViewResolver())
                 .build();
     }
-
+    @RequestMapping("/")
+    public String home() {
+        return "welcome";
+    }
+    
     @Test
     public void registrationTestforHappyFlow() throws Exception {
         mockMvc.perform(get("/registration"))
